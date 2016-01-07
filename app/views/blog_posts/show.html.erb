@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @blog_post.title %></h1>  
+
+
+<h4>By: <%= @blog_post.user.username%></h4>
+
+<div class="well">
+<p><%= @blog_post.blog_entry %></p>
+</div>
+
+<% if current_user.id == @blog_post.user.id %>
+	<p>
+		<%= link_to 'Edit', edit_blog_post_path(@blog_post), class: "btn btn-info" %>  <td><%= link_to 'Destroy', @blog_post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-info" %>
+	</p>
+<%end%>
+
+<p>
+	<%= render 'comments/form' %>
+</p>
+
+<p>
+	<% @blog_post.comments.each do |comment| %>
+	<p>
+		<%= comment.user.username %> said... <br />
+		<%= comment.comment_entry %>
+	</p>
+	<%end%>
+</p>
+
+
+<p>
+	<%= link_to 'Back', blog_posts_path %>
+</p>

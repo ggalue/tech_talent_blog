@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Blog Posts</h1>
+
+<%= link_to 'New Blog Post', new_blog_post_path, class: "btn btn-info" %>
+
+<!-- <table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Blog entry</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @blog_posts.each do |blog_post| %>
+      <tr>
+        <td><%= blog_post.title %></td>
+        <td><%= blog_post.user.username %></td>
+        <td><%= blog_post.blog_entry %></td>
+        <td><%= link_to 'Show', blog_post %></td>
+        <td><%= link_to 'Edit', edit_blog_post_path(blog_post) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br> -->
+
+<div class="container">
+  <div class="row">
+    <% @blog_posts.each do |blog_post| %>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <div class="post-preview">
+        <h2 class="post-title"><%=blog_post.title%></h2>
+        <p><%= blog_post.blog_entry[0...200]%>...<%=link_to"READ MORE",blog_post %></p>
+        <div class="post-meta">
+          <p>Posted by <%=link_to blog_post.user.username%> at <%=blog_post.created_at.strftime("%I:%M%p on %m/%d/%Y") %></p>
+         <!--  <div class="container">
+          <%= link_to 'Show', blog_post %>
+          <%= link_to 'Edit', edit_blog_post_path(blog_post) %>
+        </div> -->
+        </div>
+      </div>
+    </div>
+    <%end%>
+  </div>
+
+<!-- or time_ago_in_words -->
+
+
+
